@@ -8,6 +8,7 @@ Just place Symbiose-unzip in the /usr/bin folder.
 
 ## Syntax
 > unzip [FILE]
+
 *FILE* must have .zip extension.
 
 ## Licence
