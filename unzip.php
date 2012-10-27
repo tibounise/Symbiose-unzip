@@ -1,5 +1,4 @@
 <?php
-
 // Unzip for Symbiose WebOS
 // Coded by TiBounise (http://tibounise.com)
 // Released as GPL v3 software
@@ -13,12 +12,14 @@ $AbsoluteLocation = $this->terminal->getAbsoluteLocation($this->arguments->getPa
 if (!$FileManager->exists($AbsoluteLocation))
   throw new InvalidArgumentException('Le fichier n\'existe pas !');
 
-// Check the extension
-if (!preg_match('#\.zip$#',$AbsoluteLocation))
+$file = $FileManager->get($AbsoluteLocation);
+
+// Check file type
+if ($file->extension() != 'zip')
   throw new InvalidArgumentException('Le fichier fourni ne semble pas être au format .zip');
 
 // Generate the real paths
-$FilePath = $FileManager->get($AbsoluteLocation)->realpath();
+$FilePath = $file->realpath();
 $ZipFilename = end(explode("/",$FilePath));
 $FolderPath = preg_replace('#'.$ZipFilename.'$#','',$FilePath);
 
@@ -33,5 +34,5 @@ if ($zip === TRUE) {
   $ZipHandler->close();
   echo $ZipFilename.' a été décompressé en '.(mktime() - $startTime).' secondes.';
 } else {
-  throw new InvalidArgumentException('L\'archive n\'a pu s\'extraire');
+  throw new InvalidArgumentException('L\'archive n\'a pu etre extraite');
 }
