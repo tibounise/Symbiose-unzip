@@ -1,6 +1,6 @@
 <?php
 // Unzip for Symbiose WebOS
-// Coded by TiBounise (http://tibounise.com)
+// Coded by TiBounise & $imon
 // Released as GPL v3 software
 
 if (!$this->arguments->isParam(0))
